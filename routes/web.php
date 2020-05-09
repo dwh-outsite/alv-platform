@@ -19,6 +19,4 @@ Route::view('/', 'login')->name('login-view');
 Route::post('/', LoginController::class)->name('login-post');
 
 // TODO: Add and test auth requirement
-Route::get('/live', function () {
-
-})->name('live');
+Route::view('/live', 'live')->name('live');
