@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'participants',
         'passwords' => 'users',
     ],
 
@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'participants' => [
+            'driver' => 'participants-session',
+            'provider' => 'participants',
+        ],
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -66,6 +71,11 @@ return [
     */
 
     'providers' => [
+        'participants' => [
+            'driver' => 'eloquent',
+            'model' => App\Participant::class,
+        ],
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
