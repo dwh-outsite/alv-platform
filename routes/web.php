@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ Route::post('/', LoginController::class)->name('login-post');
 Route::middleware('auth')->group(function () {
     Route::view('/live', 'live')->name('live'); // TODO: Test auth requirement
     Route::post('/questions', [QuestionController::class, 'store']);
+    Route::post('/polls/vote/{pollOption}', [PollController::class, 'store']);
 });
