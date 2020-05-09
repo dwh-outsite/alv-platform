@@ -1943,55 +1943,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      state: 'open',
+      state: 'closed',
       selected: undefined,
-      poll: {
-        id: 1,
-        question: 'Wat vind je van het jaarverslag?',
-        options: [{
-          id: 1,
-          answer: 'Supermooi!'
-        }, {
-          id: 2,
-          answer: 'Mwahh'
-        }, {
-          id: 3,
-          answer: 'Ik zou het wel weten als ik een jaarverslag was'
-        }, {
-          id: 4,
-          answer: 'Geen mening'
-        }]
-      }
+      poll: undefined
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    Echo["private"]('polls').listen('PollStatusHasChanged', function (event) {
+      _this.poll = event.poll;
+      _this.state = event.poll.status;
+    });
   },
   methods: {
     vote: function vote() {
-      var _this = this;
+      var _this2 = this;
 
       this.state = 'loading';
       axios.post('/polls/vote/' + this.selected).then(function () {
-        _this.state = 'submitted';
+        _this2.state = 'submitted';
 
-        _this.$notify({
+        _this2.$notify({
           type: 'success',
           title: 'Stem verzonden!',
           text: 'Je stem is succcesvol verwerkt.'
         });
       })["catch"](function (error) {
-        _this.state = 'open';
+        _this2.state = 'open';
 
-        _this.$notify({
+        _this2.$notify({
           type: 'error',
           title: 'Oeps, er gings iets fout!',
           text: error.response.data.error
         });
       })["catch"](function () {
-        _this.state = 'open';
+        _this2.state = 'open';
 
-        _this.$notify({
+        _this2.$notify({
           type: 'error',
           title: 'Oeps, er gings iets fout!',
           text: 'De actie kon niet worden uitgevoerd'
@@ -25088,86 +25084,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "p-4" },
-      [
-        _c("span", { staticClass: "font-bold" }, [
-          _vm._v(_vm._s(_vm.poll.question))
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.poll.options, function(option) {
-          return _c(
-            "div",
-            {
-              staticClass:
-                "mt-4 bg-gray-800 rounded-md p-4 flex items-center leading-5",
-              class: [
-                _vm.state == "open" ? "hover:bg-gray-700 cursor-pointer" : "",
-                _vm.state == "open" && _vm.selected == option.id
-                  ? "bg-purple-900 hover:bg-purple-800"
-                  : "",
-                _vm.state != "open" && _vm.selected != option.id
-                  ? "text-gray-600"
-                  : "",
-                _vm.state != "open" && _vm.selected == option.id
-                  ? "bg-purple-700"
-                  : ""
-              ],
-              on: {
-                click: function($event) {
-                  _vm.selected = option.id
-                }
-              }
-            },
-            [
-              _vm.selected == option.id
-                ? _c("div", {
-                    staticClass:
-                      "w-4 h-4 rounded border-2 border-gray-200 bg-gray-200 mr-4"
-                  })
-                : _c("div", {
-                    staticClass: "w-4 h-4 rounded border-2 border-gray-600 mr-4"
-                  }),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex-1" }, [
-                _vm._v(_vm._s(option.answer))
-              ])
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-end" }, [
-          _c(
-            "button",
-            {
-              staticClass: "mt-4 bg-gray-700 font-bold p-4 rounded",
-              class:
-                _vm.selected && _vm.state == "open"
-                  ? "bg-purple-700 hover:bg-purple-500"
-                  : "",
-              attrs: { disabled: !_vm.selected || _vm.state != "open" },
-              on: { click: _vm.vote }
-            },
-            [
-              _vm.state == "open"
-                ? _c("span", [_vm._v("Stem versturen")])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.state == "loading"
-                ? _c("span", [_vm._v("Laden...")])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.state == "submitted"
-                ? _c("span", [_vm._v("Je stem is verwerkt")])
-                : _vm._e()
-            ]
-          )
-        ])
-      ],
-      2
-    )
+  return _c("div", { staticClass: "h-full" }, [
+    _vm.state != "closed"
+      ? _c(
+          "div",
+          { staticClass: "p-4" },
+          [
+            _c("span", { staticClass: "font-bold" }, [
+              _vm._v(_vm._s(_vm.poll.question))
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.poll.options, function(option) {
+              return _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-4 bg-gray-800 rounded-md p-4 flex items-center leading-5",
+                  class: [
+                    _vm.state == "open"
+                      ? "hover:bg-gray-700 cursor-pointer"
+                      : "",
+                    _vm.state == "open" && _vm.selected == option.id
+                      ? "bg-purple-900 hover:bg-purple-800"
+                      : "",
+                    _vm.state != "open" && _vm.selected != option.id
+                      ? "text-gray-600"
+                      : "",
+                    _vm.state != "open" && _vm.selected == option.id
+                      ? "bg-purple-700"
+                      : ""
+                  ],
+                  on: {
+                    click: function($event) {
+                      _vm.selected = option.id
+                    }
+                  }
+                },
+                [
+                  _vm.selected == option.id
+                    ? _c("div", {
+                        staticClass:
+                          "w-4 h-4 rounded border-2 border-gray-200 bg-gray-200 mr-4"
+                      })
+                    : _c("div", {
+                        staticClass:
+                          "w-4 h-4 rounded border-2 border-gray-600 mr-4"
+                      }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-1" }, [
+                    _vm._v(_vm._s(option.answer))
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-end" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "mt-4 bg-gray-700 font-bold p-4 rounded",
+                  class:
+                    _vm.selected && _vm.state == "open"
+                      ? "bg-purple-700 hover:bg-purple-500"
+                      : "",
+                  attrs: { disabled: !_vm.selected || _vm.state != "open" },
+                  on: { click: _vm.vote }
+                },
+                [
+                  _vm.state == "open"
+                    ? _c("span", [_vm._v("Stem versturen")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.state == "loading"
+                    ? _c("span", [_vm._v("Laden...")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.state == "submitted"
+                    ? _c("span", [_vm._v("Je stem is verwerkt")])
+                    : _vm._e()
+                ]
+              )
+            ])
+          ],
+          2
+        )
+      : _c(
+          "div",
+          { staticClass: "h-full flex items-center justify-center leading-7" },
+          [
+            _vm._v("\n        Er is op dit moment geen stemming bezig."),
+            _c("br"),
+            _vm._v("\n        Een nieuwe vraag verschijnt automatisch.\n    ")
+          ]
+        )
   ])
 }
 var staticRenderFns = []
@@ -38669,6 +38678,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   key: "alv-platform-key",
   wsHost: window.location.hostname,
   wsPort: 6001,
+  wssPort: 6001,
+  // Valet only?
   disableStats: true,
   enabledTransports: ['ws', 'wss']
 });

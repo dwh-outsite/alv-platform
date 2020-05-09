@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="p-4">
+    <div class="h-full">
+        <div v-if="state != 'closed'" class="p-4">
             <span class="font-bold">{{ poll.question }}</span>
             <div
                 v-for="option in poll.options"
@@ -30,6 +30,10 @@
                 </button>
             </div>
         </div>
+        <div v-else class="h-full flex items-center justify-center leading-7">
+            Er is op dit moment geen stemming bezig.<br />
+            Een nieuwe vraag verschijnt automatisch.
+        </div>
     </div>
 </template>
 
@@ -37,31 +41,16 @@
     export default {
         data() {
             return {
-                state: 'open',
+                state: 'closed',
                 selected: undefined,
-                poll: {
-                    id: 1,
-                    question: 'Wat vind je van het jaarverslag?',
-                    options: [
-                        {
-                            id: 1,
-                            answer: 'Supermooi!'
-                        },
-                        {
-                            id: 2,
-                            answer: 'Mwahh'
-                        },
-                        {
-                            id: 3,
-                            answer: 'Ik zou het wel weten als ik een jaarverslag was'
-                        },
-                        {
-                            id: 4,
-                            answer: 'Geen mening'
-                        }
-                    ]
-                }
+                poll: undefined
             }
+        },
+        mounted() {
+            Echo.private('polls').listen('PollStatusHasChanged', event => {
+                this.poll = event.poll
+                this.state = event.poll.status
+            })
         },
         methods: {
             vote() {
