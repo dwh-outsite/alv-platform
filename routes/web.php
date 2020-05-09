@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'login')->name('login-view');
+Route::view('/', 'login')->name('login');
 
 Route::post('/', LoginController::class)->name('login-post');
 
-// TODO: Add and test auth requirement
-Route::view('/live', 'live')->name('live');
+Route::middleware('auth')->group(function () {
+    Route::view('/live', 'live')->name('live'); // TODO: Test auth requirement
+    Route::post('/questions', [QuestionController::class, 'store']);
+});

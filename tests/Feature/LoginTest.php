@@ -29,7 +29,7 @@ class LoginTest extends TestCase
 
         $request = $this->post('/', ['code' => 'wrong']);
 
-        $request->assertRedirect(route('login-view'));
+        $request->assertRedirect(route('login'));
         $this->assertGuest();
     }
 }
