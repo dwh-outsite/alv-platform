@@ -9,7 +9,7 @@ class ParticipantProvider implements UserProvider
 {
     public function retrieveById($identifier)
     {
-        return Participant::where(Participant::getAuthIdentifierName(), $identifier)->first();
+        return Participant::where((new Participant)->getAuthIdentifierName(), $identifier)->first();
     }
 
     public function retrieveByCredentials(array $credentials)
