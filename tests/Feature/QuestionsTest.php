@@ -24,7 +24,7 @@ class QuestionsTest extends TestCase
         $participant = factory(Participant::class)->create();
         $this->actingAs($participant);
 
-        $request = $this->postJson('/questions', ['question' => 'How are you?']);
+        $this->postJson('/questions', ['question' => 'How are you?']);
 
         $question = $participant->questions()->firstOrFail();
         $this->assertEquals('How are you?', $question->question);
