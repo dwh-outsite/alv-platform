@@ -7,8 +7,8 @@
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Stemmingen
                 </div>
-                <div class="h-full flex items-center justify-center">
-                    Er is op dit moment geen stemming bezig.
+                <div class="h-full">
+                    <poll />
                 </div>
             </div>
             <div class="border-t-2 border-gray-400">
@@ -30,8 +30,8 @@
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Stel een vraag
                 </div>
-                <div class="flex-1 flex items-center justify-center">
-                    Deze functionaliteit is nog niet beschikbaar.
+                <div class="flex-1">
+                    <question />
                 </div>
             </div>
         </div>

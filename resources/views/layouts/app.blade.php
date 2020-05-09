@@ -40,6 +40,8 @@
         <div class="flex-1">
             @yield('content')
         </div>
+
+        <notifications position="center top" />
     </div>
 </body>
 </html>
