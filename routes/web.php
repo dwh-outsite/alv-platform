@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'login')->name('login');
+Route::view('/login', 'login')->name('login');
 
-Route::post('/', LoginController::class)->name('login-post');
+Route::post('/login', LoginController::class)->name('login-post');
 
 Route::middleware('auth')->group(function () {
+    Route::view('/', 'live');
     Route::view('/live', 'live')->name('live'); // TODO: Test auth requirement
     Route::post('/questions', [QuestionController::class, 'store']);
     Route::post('/polls/vote/{pollOption}', [PollController::class, 'store']);
 });
+
+//Auth::routes();
