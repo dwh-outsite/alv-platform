@@ -31,7 +31,7 @@ class QuestionsTest extends TestCase
     }
 
     /** @test */
-    public function a_participant_cannot_post_a_question_without_amessage()
+    public function a_participant_cannot_post_a_question_without_a_message()
     {
         $participant = factory(Participant::class)->create();
         $this->actingAs($participant);
