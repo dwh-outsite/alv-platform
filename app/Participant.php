@@ -26,7 +26,7 @@ class Participant extends Model implements Authenticatable
 
     public function getRememberToken()
     {
-        throw new \Exception("Rembering sessions is not supported.");
+        // Not implemented
     }
 
     public function setRememberToken($value)

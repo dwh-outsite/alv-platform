@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionController;
@@ -27,4 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/polls/vote/{pollOption}', [PollController::class, 'store']);
 });
 
-//Auth::routes();
+
+Route::get('/admin/login', function () {
+    auth()->logout();
+    return view('admin.login');
+})->name('admin.login');
+
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login-post');
+
+Route::middleware('auth:admin')->prefix('admin')->group(function () {
+    Route::view('/', 'admin.home');
+});
