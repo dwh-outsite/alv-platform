@@ -13,7 +13,7 @@ Vue.use(Notifications)
 
 Vue.component('question', require('./components/Question.vue').default);
 Vue.component('poll', require('./components/Poll.vue').default);
-// Vue.component('admin-home', require('./components/admin/AdminHome.vue'));
+Vue.component('files-list', require('./components/FilesList.vue').default);
 
 const app = new Vue({
     el: '#app'
