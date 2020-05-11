@@ -25,3 +25,7 @@ Broadcast::channel('polls', function ($user) {
 Broadcast::channel('questions', function ($user) {
     return $user instanceof Admin;
 });
+
+Broadcast::channel('participants', function ($user) {
+    return ['id' => $user->id, 'name' => $user->name, 'type' => $user instanceof Admin ? 'admin' : 'participant'];
+});

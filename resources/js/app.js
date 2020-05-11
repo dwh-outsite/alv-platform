@@ -11,11 +11,14 @@ Vue.use(Notifications)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('connection-status', require('./components/ConnectionStatus.vue').default);
 Vue.component('question', require('./components/Question.vue').default);
 Vue.component('poll', require('./components/Poll.vue').default);
 Vue.component('files-list', require('./components/FilesList.vue').default);
 
 Vue.component('admin-questions', require('./components/Admin/Questions.vue').default);
+Vue.component('admin-participants', require('./components/Admin/Participants.vue').default);
+Vue.component('admin-polls', require('./components/Admin/Polls.vue').default);
 
 const app = new Vue({
     el: '#app'

@@ -26,10 +26,7 @@
             </div>
             @auth
                 <div>
-                    <div class="bg-purple-100 p-2 rounded-md flex items-center">
-                        <div class="h-2 w-2 mr-2 rounded-full bg-purple-500"></div>
-                        <span class="text-purple-500 uppercase tracking-wider text-xs">Connected</span>
-                    </div>
+                    <connection-status />
                 </div>
                 <div class="text-right text-sm">
                     {{ auth()->user()->name }}
@@ -37,11 +34,11 @@
             @endauth
         </nav>
 
-        <div class="flex-1">
+        <div class="flex-1 h-full">
             @yield('content')
         </div>
-
-        <notifications position="center top" />
     </div>
+
+    <notifications position="center top" />
 </body>
 </html>
