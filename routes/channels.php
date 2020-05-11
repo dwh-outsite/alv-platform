@@ -1,5 +1,6 @@
 <?php
 
+use App\User as Admin;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -19,4 +20,8 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 Broadcast::channel('polls', function ($user) {
     return $user->id > 0;
+});
+
+Broadcast::channel('questions', function ($user) {
+    return $user instanceof Admin;
 });

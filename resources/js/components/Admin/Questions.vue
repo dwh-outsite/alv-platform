@@ -7,7 +7,6 @@
             </div>
             {{ question.question }}
         </div>
-        <div>tst</div>
     </div>
 </template>
 
@@ -19,6 +18,11 @@
             return {
                 questions: this.initialQuestions
             }
-        }
+        },
+        mounted() {
+            Echo.private('questions').listen('QuestionWasAsked', event => {
+                this.questions.unshift(event.question)
+            })
+        },
     }
 </script>
