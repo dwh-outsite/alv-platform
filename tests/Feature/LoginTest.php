@@ -15,7 +15,7 @@ class LoginTest extends TestCase
     {
         $participant = factory(Participant::class)->create(['code' => 'secret']);
 
-        $request = $this->post('/', ['code' => 'secret']);
+        $request = $this->post('/login', ['code' => 'secret']);
 
         $request->assertRedirect(route('live'));
         $this->assertAuthenticated();
@@ -27,9 +27,9 @@ class LoginTest extends TestCase
     {
         factory(Participant::class)->create(['code' => 'secret']);
 
-        $request = $this->post('/', ['code' => 'wrong']);
+        $request = $this->post('/login', ['code' => 'wrong']);
 
-        $request->assertRedirect(route('login'));
+        $request->assertSessionHasErrors();
         $this->assertGuest();
     }
 }

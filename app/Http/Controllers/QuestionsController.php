@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class QuestionsController extends Controller
 {
     public function store(Request $request)
     {
