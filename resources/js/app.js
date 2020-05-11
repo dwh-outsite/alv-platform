@@ -15,6 +15,8 @@ Vue.component('question', require('./components/Question.vue').default);
 Vue.component('poll', require('./components/Poll.vue').default);
 Vue.component('files-list', require('./components/FilesList.vue').default);
 
+Vue.component('admin-questions', require('./components/Admin/Questions.vue').default);
+
 const app = new Vue({
     el: '#app'
 });

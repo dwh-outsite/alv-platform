@@ -13,6 +13,9 @@
             </div>
         </div>
         <div class="flex-1 flex flex-col justify">
+            <div>
+                <admin-questions :initial-questions='@json($questions)' />
+            </div>
             <div class="flex-1 border-t-2 border-gray-400 flex flex-col">
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Stel een vraag
