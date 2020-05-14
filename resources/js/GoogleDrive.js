@@ -5,7 +5,7 @@ export default class GoogleDrive {
         return axios
             .get(
                 `https://www.googleapis.com/drive/v3/files` +
-                `?orderBy=name desc` +
+                `?orderBy=name asc` +
                 `&q='${folderId}'%20in%20parents` +
                 `&fields=files(id, name, webContentLink, webViewLink, iconLink, thumbnailLink)` +
                 `&key=AIzaSyABpb5AmlfMs5uREaBrCo3o8k4jwKf-jjo`
