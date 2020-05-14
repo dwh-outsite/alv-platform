@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Poll extends Model
 {
+    protected $guarded = [];
     protected $with = ['options'];
 
     public function options()

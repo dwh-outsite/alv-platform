@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\QuestionsController as AdminQuestionsController;
+use App\Http\Controllers\Admin\PollController as AdminPollController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionsController;
@@ -40,4 +40,8 @@ Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin
 
 Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index']);
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
 });

@@ -1,13 +1,27 @@
 <template>
     <div>
         <div v-for="poll in polls" class="bg-gray-800 rounded-md m-4">
-            <div class="bg-gray-700 rounded-t-md p-4 font-bold text-lg flex justify-between items-center">
+            <div
+                class="rounded-t-md p-4 font-bold text-lg flex justify-between items-center"
+                :class="poll.status == 'open' ? 'bg-green-600' : 'bg-gray-700'"
+            >
                 <div>{{ poll.question }}</div>
                 <div>
-                    <button class="bg-red-900 hover:bg-red-700 text-base text-gray-100 py-2 px-4 rounded mr-4">
+                    <button class="bg-red-900 hover:bg-red-700 text-base text-gray-100 py-2 px-4 rounded mr-2">
                         Show Results on Stream
                     </button>
-                    <button class="bg-green-800 hover:bg-green-600 text-base text-gray-100 py-2 px-4 rounded">
+                    <button
+                        v-if="poll.status == 'open'"
+                        @click="closePoll(poll.id)"
+                        class="bg-green-800 hover:bg-green-600 text-base text-gray-100 py-2 px-4 rounded"
+                    >
+                        Close Voting
+                    </button>
+                    <button
+                        v-else
+                        @click="openPoll(poll.id)"
+                        class="bg-green-800 hover:bg-green-600 text-base text-gray-100 py-2 px-4 rounded"
+                    >
                         Open Voting
                     </button>
                 </div>
@@ -28,6 +42,42 @@
         data() {
             return {
                 polls: this.initialPolls
+            }
+        },
+        mounted() {
+            Echo.private('polls').listen('PollStatusHasChanged', event => {
+                this.polls.find(poll => poll.id == event.poll.id).status = event.poll.status
+            })
+        },
+        methods: {
+            openPoll(id) {
+                this.changeStatus(id, 'open', () => {
+                    this.$notify({
+                        type: 'success',
+                        title: 'Poll is nu geopend',
+                        text: 'De actie is succesvol uitgevoerd.'
+                    })
+                })
+            },
+            closePoll(id) {
+                this.changeStatus(id, 'closed', () => {
+                    this.$notify({
+                        type: 'success',
+                        title: 'Poll is nu gesloten',
+                        text: 'De actie is succesvol uitgevoerd.'
+                    })
+                })
+            },
+            changeStatus(id, status, successCallback) {
+                axios.put('/polls/' + id, { status })
+                    .then(successCallback)
+                    .catch(error => {
+                        this.$notify({
+                            type: 'error',
+                            title: 'Oeps, er gings iets fout!',
+                            text: 'De actie kon niet worden uitgevoerd.'
+                        })
+                    })
             }
         }
     }
