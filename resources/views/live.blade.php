@@ -15,7 +15,7 @@
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Vergaderstukken
                 </div>
-                <div class="py-4 px-4">
+                <div class="py-3 px-4">
                     <files-list folder-id="1CGDDk8iXkluXqHZf7NEWgcmKmKtaQSSi" />
                 </div>
             </div>

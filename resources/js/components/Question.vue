@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full flex p-4 text-gray-100">
+    <div class="h-full flex p-4 text-gray-100 max-h-48">
         <textarea
             v-if="state == 'available' || state == 'loading'"
             v-model="question"

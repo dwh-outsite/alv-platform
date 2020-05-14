@@ -12,6 +12,9 @@ module.exports = {
       "16/9": [16, 9],
       "4/3": [4, 3],
       "21/9": [21, 9]
+    },
+    maxHeight: {
+      48: '12rem'
     }
   },
   variants: {
