@@ -43,5 +43,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
 });
 
 Route::middleware('auth:admin')->group(function () {
+    Route::post('/polls', [AdminPollController::class, 'store']);
     Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
 });

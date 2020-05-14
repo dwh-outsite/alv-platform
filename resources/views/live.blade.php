@@ -23,7 +23,7 @@
         <div class="flex-1 flex flex-col justify">
             <div>
                 <div class="embed-responsive aspect-ratio-16/9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/J---aiyznGQ"></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/J---aiyznGQ?autoplay=1"></iframe>
                 </div>
             </div>
             <div class="flex-1 border-t-2 border-gray-400 flex flex-col">

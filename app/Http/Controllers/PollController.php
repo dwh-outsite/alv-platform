@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PollVotesHaveChanged;
 use App\PollClosedException;
 use App\PollOption;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class PollController extends Controller
         try {
             $pollOption->incrementVotes();
             session()->push('polls_voted', $pollOption->id);
+
+            event(new PollVotesHaveChanged($pollOption->poll));
 
             return response([], 200);
         } catch (PollClosedException $exception) {

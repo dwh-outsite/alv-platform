@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PollStatusHasChanged implements ShouldBroadcast
+class PollWasAdded implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -34,6 +34,6 @@ class PollStatusHasChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('polls');
+        return new PrivateChannel('admin-polls');
     }
 }

@@ -22,6 +22,10 @@ Broadcast::channel('polls', function ($user) {
     return $user->id > 0;
 });
 
+Broadcast::channel('admin-polls', function ($user) {
+    return $user instanceof Admin;
+});
+
 Broadcast::channel('questions', function ($user) {
     return $user instanceof Admin;
 });

@@ -17,7 +17,7 @@ class CreatePollOptionsTable extends Migration
             $table->id();
             $table->foreignId('poll_id');
             $table->string('answer');
-            $table->unsignedInteger('votes');
+            $table->unsignedInteger('votes')->default(0);
             $table->timestamps();
 
             $table->foreign('poll_id')->references('id')->on('polls');

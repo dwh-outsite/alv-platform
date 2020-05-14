@@ -1,5 +1,6 @@
 <template>
     <div>
+        <PollForm />
         <div v-for="poll in polls" class="bg-gray-800 rounded-md m-4">
             <div
                 class="rounded-t-md p-4 font-bold text-lg flex justify-between items-center"
@@ -37,7 +38,10 @@
 </template>
 
 <script>
+    import PollForm from './PollForm'
+
     export default {
+        components: { PollForm },
         props: ['initialPolls'],
         data() {
             return {
@@ -47,6 +51,12 @@
         mounted() {
             Echo.private('polls').listen('PollStatusHasChanged', event => {
                 this.polls.find(poll => poll.id == event.poll.id).status = event.poll.status
+            })
+            Echo.private('admin-polls').listen('PollVotesHaveChanged', event => {
+                this.polls.find(poll => poll.id == event.poll.id).options = event.poll.options
+            })
+            Echo.private('admin-polls').listen('PollWasAdded', event => {
+                this.polls.unshift(event.poll)
             })
         },
         methods: {

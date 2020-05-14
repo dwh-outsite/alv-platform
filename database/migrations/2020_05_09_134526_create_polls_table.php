@@ -15,7 +15,7 @@ class CreatePollsTable extends Migration
     {
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['open', 'closed']);
+            $table->enum('status', ['open', 'closed'])->default('closed');
             $table->string('question');
             $table->timestamps();
         });

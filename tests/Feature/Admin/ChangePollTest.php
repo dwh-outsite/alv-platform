@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class PollTest extends TestCase
+class ChangePollTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -45,5 +45,22 @@ class PollTest extends TestCase
 
         $request->assertSuccessful();
         $this->assertEquals('open', $poll->refresh()->status);
+    }
+
+    /** @test */
+    public function only_a_single_poll_can_be_active()
+    {
+        $admin = factory(User::class)->create();
+        $this->actingAs($admin, 'admin');
+        $pollToBeOpened = factory(Poll::class)->create(['status' => 'closed']);
+        $pollOpenA = factory(Poll::class)->create(['status' => 'open']);
+        $pollOpenB = factory(Poll::class)->create(['status' => 'open']);
+
+        $request = $this->put('/polls/'.$pollToBeOpened->id, ['status' => 'open']);
+
+        $request->assertSuccessful();
+        $this->assertEquals('open', $pollToBeOpened->refresh()->status);
+        $this->assertEquals('closed', $pollOpenA->refresh()->status);
+        $this->assertEquals('closed', $pollOpenB->refresh()->status);
     }
 }
