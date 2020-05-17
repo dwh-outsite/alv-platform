@@ -28,7 +28,12 @@
                 <div>
                     <connection-status />
                 </div>
-                <div class="text-right text-sm">
+                <div class="flex items-center text-right text-sm">
+                    @auth('admin')
+                        <div class="mr-6">
+                            <admin-hide-button />
+                        </div>
+                    @endauth
                     {{ auth()->user()->name }}
                 </div>
             @endauth

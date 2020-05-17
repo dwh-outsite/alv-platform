@@ -19,6 +19,7 @@ Vue.component('files-list', require('./components/FilesList.vue').default);
 Vue.component('admin-questions', require('./components/Admin/Questions.vue').default);
 Vue.component('admin-participants', require('./components/Admin/Participants.vue').default);
 Vue.component('admin-polls', require('./components/Admin/Polls.vue').default);
+Vue.component('admin-hide-button', require('./components/Admin/HideButton.vue').default);
 
 Vue.component('stream-output', require('./components/StreamOutput/StreamOutput.vue').default);
 

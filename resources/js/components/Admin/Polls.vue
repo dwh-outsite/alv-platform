@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PollForm />
+        <PollForm/>
         <div v-for="poll in polls" class="bg-gray-800 rounded-md m-4">
             <div
                 class="rounded-t-md p-4 font-bold text-lg flex justify-between items-center"
@@ -8,7 +8,10 @@
             >
                 <div>{{ poll.question }}</div>
                 <div>
-                    <button class="bg-red-900 hover:bg-red-700 text-base text-gray-100 py-2 px-4 rounded mr-2">
+                    <button
+                        @click="showOnStream(poll.id)"
+                        class="bg-red-900 hover:bg-red-700 text-base text-gray-100 py-2 px-4 rounded mr-2"
+                    >
                         Show Results on Stream
                     </button>
                     <button
@@ -28,7 +31,8 @@
                 </div>
             </div>
             <div class="px-4 py-2">
-                <div v-for="option in poll.options" class="flex justify-between my-2 p-4 rounded border border-gray-700">
+                <div v-for="option in poll.options"
+                     class="flex justify-between my-2 p-4 rounded border border-gray-700">
                     <div>{{ option.answer }}</div>
                     <div>{{ option.votes }}</div>
                 </div>
@@ -41,7 +45,7 @@
     import PollForm from './PollForm'
 
     export default {
-        components: { PollForm },
+        components: {PollForm},
         props: ['initialPolls'],
         data() {
             return {
@@ -79,9 +83,26 @@
                 })
             },
             changeStatus(id, status, successCallback) {
-                axios.put('/polls/' + id, { status })
+                axios.put('/polls/' + id, {status})
                     .then(successCallback)
                     .catch(error => {
+                        this.$notify({
+                            type: 'error',
+                            title: 'Oeps, er gings iets fout!',
+                            text: 'De actie kon niet worden uitgevoerd.'
+                        })
+                    })
+            },
+            showOnStream(id) {
+                axios.post('/output/poll/' + id)
+                    .then(() => {
+                        this.$notify({
+                            type: 'success',
+                            title: 'Poll wordt nu getoond',
+                            text: 'De actie is succesvol uitgevoerd.'
+                        })
+                    })
+                    .catch(() => {
                         this.$notify({
                             type: 'error',
                             title: 'Oeps, er gings iets fout!',

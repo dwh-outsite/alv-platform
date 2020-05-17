@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PollController as AdminPollController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\StreamOutputController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,3 +60,10 @@ Route::middleware('auth:admin')->group(function () {
  */
 
 Route::view('/output', 'output');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::post('/output/poll/{poll}', [StreamOutputController::class, 'showPoll']);
+    Route::post('/output/question/{question}', [StreamOutputController::class, 'showQuestion']);
+    Route::post('/output/lowerthird', [StreamOutputController::class, 'showLowerThird']);
+    Route::post('/output/hide', [StreamOutputController::class, 'hideAll']);
+});
