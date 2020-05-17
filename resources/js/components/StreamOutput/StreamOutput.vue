@@ -2,7 +2,7 @@
     <div class="text-white h-full relative overflow-hidden">
         <Logo />
         <transition name="slide-bottom">
-            <LowerThird v-if="active == 'lowerThird'" :data="data.lowerThird" />
+            <LowerThird v-if="active == 'lowerThird' && lowerThirdActive" :data="data.lowerThird" />
         </transition>
         <transition name="slide-bottom">
             <Question v-if="active == 'question'" :data="data.question" />
@@ -27,14 +27,26 @@
                 data: {
                     question: {},
                     poll: {},
-                    lowerThird: {}
-                }
+                    lowerThird: { active: false }
+                },
+                lowerThirdActive: false,
+                lowerThirdTimeOut: undefined
             }
         },
         mounted() {
             Echo.channel('stream-output').listen('StreamOutputHasChanged', event => {
                 this.active = event.type
                 this.data[event.type] = event.data
+
+                if (event.type == 'lowerThird') {
+                    this.lowerThirdActive = true
+
+                    clearTimeout(this.lowerThirdTimeOut)
+
+                    this.lowerThirdTimeOut = window.setTimeout(() => {
+                        this.lowerThirdActive = false
+                    }, 7000)
+                }
             })
         }
     }
