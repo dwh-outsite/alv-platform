@@ -20,6 +20,8 @@ Vue.component('admin-questions', require('./components/Admin/Questions.vue').def
 Vue.component('admin-participants', require('./components/Admin/Participants.vue').default);
 Vue.component('admin-polls', require('./components/Admin/Polls.vue').default);
 
+Vue.component('stream-output', require('./components/StreamOutput/StreamOutput.vue').default);
+
 const app = new Vue({
     el: '#app'
 });

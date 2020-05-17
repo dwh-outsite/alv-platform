@@ -2,4 +2,44 @@
 
 @tailwind components;
 
+.bg-white-transparent {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.slide-bottom-enter-active {
+    animation: slideInBottom 1s forwards;
+}
+
+.slide-bottom-leave-active {
+    animation: slideInBottom 1s forwards;
+    animation-direction: reverse;
+}
+
+.slide-right-enter-active {
+    animation: slideInRight 1s forwards;
+}
+
+.slide-right-leave-active {
+    animation: slideInRight 1s forwards;
+    animation-direction: reverse;
+}
+
+@keyframes slideInBottom {
+    0% {
+        transform: translateY(1080px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(1920px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 @tailwind utilities;

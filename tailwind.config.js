@@ -5,7 +5,18 @@ module.exports = {
     './resources/css/**/*.css',
   ],
   theme: {
-    extend: {},
+    extend: {
+        skew: {
+            '1.5': '1.5deg',
+            '-1.5': '-1.5deg',
+        },
+        borderWidth: {
+            16: '16px',
+        },
+        width: {
+            96: '24rem',
+        }
+    },
     aspectRatio: {
       none: 0,
       square: [1, 1],

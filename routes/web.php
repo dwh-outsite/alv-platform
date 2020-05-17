@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Participant routes
+ */
+
 Route::view('/login', 'login')->name('login');
 
 Route::post('/login', LoginController::class)->name('login-post');
@@ -30,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/polls/vote/{pollOption}', [PollController::class, 'store']);
 });
 
+/**
+ * Admin routes
+ */
 
 Route::get('/admin/login', function () {
     auth()->logout();
@@ -46,3 +53,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/polls', [AdminPollController::class, 'store']);
     Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
 });
+
+/**
+ * Output routes
+ */
+
+Route::view('/output', 'output');
