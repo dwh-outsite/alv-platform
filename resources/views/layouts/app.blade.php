@@ -29,11 +29,11 @@
                     <connection-status />
                 </div>
                 <div class="flex items-center text-right text-sm">
-                    @auth('admin')
+                    @if (auth()->user() instanceof App\User)
                         <div class="mr-6">
                             <admin-hide-button />
                         </div>
-                    @endauth
+                    @endif
                     {{ auth()->user()->name }}
                 </div>
             @endauth
