@@ -16,15 +16,15 @@
                     .then(() => {
                         this.$notify({
                             type: 'success',
-                            title: 'Er wordt niks meer weergegeven',
-                            text: 'De actie is succesvol uitgevoerd.'
+                            title: 'All components are now hidden',
+                            text: 'The actions was executed successfully.'
                         })
                     })
                     .catch(() => {
                         this.$notify({
                             type: 'error',
-                            title: 'Oeps, er gings iets fout!',
-                            text: 'De actie kon niet worden uitgevoerd.'
+                            title: 'Whoops, something went wrong!',
+                            text: 'The actions could not be executed successfully.'
                         })
                     })
             }

@@ -84,8 +84,8 @@
                 this.changeStatus(id, 'open', () => {
                     this.$notify({
                         type: 'success',
-                        title: 'Poll is nu geopend',
-                        text: 'De actie is succesvol uitgevoerd.'
+                        title: 'The poll is now open for voting',
+                        text: 'The actions was executed successfully.'
                     })
                 })
             },
@@ -93,8 +93,8 @@
                 this.changeStatus(id, 'closed', () => {
                     this.$notify({
                         type: 'success',
-                        title: 'Poll is nu gesloten',
-                        text: 'De actie is succesvol uitgevoerd.'
+                        title: 'The poll is now closed',
+                        text: 'The actions was executed successfully.'
                     })
                 })
             },
@@ -104,8 +104,8 @@
                     .catch(error => {
                         this.$notify({
                             type: 'error',
-                            title: 'Oeps, er gings iets fout!',
-                            text: 'De actie kon niet worden uitgevoerd.'
+                            title: 'Whoops, something went wrong!',
+                            text: 'The actions could not be executed successfully.'
                         })
                     })
             },
@@ -116,14 +116,14 @@
                         this.votes.options.push(optionId)
                         this.$notify({
                             type: 'success',
-                            title: 'Stem verzonden!',
-                            text: 'Je stem is succcesvol verwerkt.'
+                            title: 'Voted!',
+                            text: 'Your vote has been processed successfully.'
                         })
                     })
                     .catch(error => {
                         this.$notify({
                             type: 'error',
-                            title: 'Oeps, er gings iets fout!',
+                            title: 'Whoops, something went wrong!',
                             text: error.response.data.error
                         })
                     })
@@ -133,15 +133,15 @@
                     .then(() => {
                         this.$notify({
                             type: 'success',
-                            title: 'Poll wordt nu getoond',
-                            text: 'De actie is succesvol uitgevoerd.'
+                            title: 'The poll is now being shown',
+                            text: 'The actions was executed successfully.'
                         })
                     })
                     .catch(() => {
                         this.$notify({
                             type: 'error',
-                            title: 'Oeps, er gings iets fout!',
-                            text: 'De actie kon niet worden uitgevoerd.'
+                            title: 'Whoops, something went wrong!',
+                            text: 'The actions could not be executed successfully.'
                         })
                     })
             }

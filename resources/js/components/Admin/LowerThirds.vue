@@ -52,15 +52,15 @@
                     .then(() => {
                         this.$notify({
                             type: 'success',
-                            title: 'Lower third wordt nu getoond',
-                            text: 'De actie is succesvol uitgevoerd.'
+                            title: 'Lower third is now being shown',
+                            text: 'The actions was executed successfully.'
                         })
                     })
                     .catch(() => {
                         this.$notify({
                             type: 'error',
-                            title: 'Oeps, er gings iets fout!',
-                            text: 'De actie kon niet worden uitgevoerd.'
+                            title: 'Whoops, something went wrong!',
+                            text: 'The actions could not be executed successfully.'
                         })
                     })
             }
