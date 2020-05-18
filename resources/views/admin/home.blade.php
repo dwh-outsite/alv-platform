@@ -15,6 +15,12 @@
         <div class="border-r-2 border-gray-400 flex-1 flex flex-col justify">
             <div>
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
+                    Lower Thirds
+                </div>
+                <admin-lower-thirds />
+            </div>
+            <div class="border-t-2 border-gray-400">
+                <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Vragen
                 </div>
                 <admin-questions :initial-questions='@json($questions)' />
