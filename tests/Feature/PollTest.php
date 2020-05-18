@@ -24,6 +24,8 @@ class PollTest extends TestCase
     /** @test */
     public function a_participant_can_vote_during_an_open_poll()
     {
+        $this->withoutExceptionHandling();
+
         $participant = factory(Participant::class)->create();
         $this->actingAs($participant);
         $pollOption = factory(PollOption::class)->create();

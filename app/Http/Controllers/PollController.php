@@ -11,15 +11,14 @@ class PollController extends Controller
 {
     public function store(PollOption $pollOption, Request $request)
     {
-        // Check if user has already voted. We do this using sessions, since storing the voters (participants) would
-        // result in non-anonymous voting.
-        if (in_array($pollOption->id, session()->get('polls_voted', []))) {
+        if ($pollOption->poll->participantHasVotedAlready($request->user())) {
             return response(['error' => 'Cannot vote twice for the same poll.'], 422);
         }
 
         try {
             $pollOption->incrementVotes();
-            session()->push('polls_voted', $pollOption->id);
+
+            $pollOption->poll->registerVoteByParticipant($request->user());
 
             event(new PollVotesHaveChanged($pollOption->poll));
 
