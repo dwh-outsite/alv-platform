@@ -34,10 +34,7 @@
         props: ['initialQuestions'],
         data() {
             return {
-                lowerThirds: [
-                    { name: 'Casper Boone', title: 'Bestuurslid Jongeren' },
-                    { name: 'Robert Baart', title: 'Bestuurslid Ouderen' }
-                ],
+                lowerThirds: [],
                 form: { name: '', title: '' }
             }
         },
