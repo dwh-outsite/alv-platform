@@ -31,10 +31,22 @@
                 </div>
             </div>
             <div class="px-4 py-2">
-                <div v-for="option in poll.options"
-                     class="flex justify-between my-2 p-4 rounded border border-gray-700">
+                <div
+                    v-for="option in poll.options"
+                    class="flex justify-between my-2 p-4 rounded border border-gray-700"
+                    :class="votes.options.includes(option.id) ? 'bg-gray-700' : ''"
+                >
                     <div>{{ option.answer }}</div>
-                    <div>{{ option.votes }}</div>
+                    <div>
+                        {{ option.votes }}
+                        <button
+                            v-if="poll.status == 'open' && !votes.polls.includes(poll.id)"
+                            @click="vote(poll.id, option.id)"
+                            class="bg-purple-600 hover:bg-purple-400 text-sm text-gray-100 py-1 px-2 rounded ml-2"
+                        >
+                            Vote
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,7 +61,11 @@
         props: ['initialPolls'],
         data() {
             return {
-                polls: this.initialPolls
+                polls: this.initialPolls,
+                votes: {
+                    polls: [],
+                    options: []
+                }
             }
         },
         mounted() {
@@ -90,6 +106,25 @@
                             type: 'error',
                             title: 'Oeps, er gings iets fout!',
                             text: 'De actie kon niet worden uitgevoerd.'
+                        })
+                    })
+            },
+            vote(pollId, optionId) {
+                axios.post('/polls/vote/' + optionId)
+                    .then(() => {
+                        this.votes.polls.push(pollId)
+                        this.votes.options.push(optionId)
+                        this.$notify({
+                            type: 'success',
+                            title: 'Stem verzonden!',
+                            text: 'Je stem is succcesvol verwerkt.'
+                        })
+                    })
+                    .catch(error => {
+                        this.$notify({
+                            type: 'error',
+                            title: 'Oeps, er gings iets fout!',
+                            text: error.response.data.error
                         })
                     })
             },

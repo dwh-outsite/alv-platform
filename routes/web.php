@@ -31,8 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::view('/', 'live');
     Route::view('/live', 'live')->name('live'); // TODO: Test auth requirement
     Route::post('/questions', [QuestionsController::class, 'store']);
-    Route::post('/polls/vote/{pollOption}', [PollController::class, 'store']);
 });
+
+Route::post('/polls/vote/{pollOption}', [PollController::class, 'store'])
+    ->middleware('auth:participants,admin');
 
 /**
  * Admin routes
