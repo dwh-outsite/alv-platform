@@ -46,6 +46,7 @@
         methods: {
             submit() {
                 this.lowerThirds.push(this.form)
+                this.form = { name: '', title: '' }
             },
             showOnStream(lowerThird) {
                 axios.post('/output/lowerthird/', lowerThird)
