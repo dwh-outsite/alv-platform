@@ -20,7 +20,7 @@
 
                     <input type="text" placeholder="Code" name="code" class="form-input w-full text-center" required />
 
-                    <button class="mt-6 w-full bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-3 rounded">
+                    <button class="mt-6 w-full bg-purple-500 hover:bg-purple-700 text-gray-100 font-bold py-3 rounded">
                         Inloggen
                     </button>
                 </form>
