@@ -9,6 +9,11 @@ class Poll extends Model
     protected $guarded = [];
     protected $with = ['options'];
 
+    public function isClosed()
+    {
+        return $this->status == 'closed';
+    }
+
     public function options()
     {
         return $this->hasMany(PollOption::class);
@@ -19,21 +24,34 @@ class Poll extends Model
         return $this->belongsToMany(Participant::class);
     }
 
-    public function participantHasVotedAlready($participant)
+    public function admins()
     {
-        return $this->participants()->where('participant_id', $participant->id)->exists();
+        return $this->belongsToMany(User::class);
+    }
+
+    public function alreadyVoted($user)
+    {
+        if ($user instanceof User) {
+            return $this->admins()->where('user_id', $user->id)->exists();
+        }
+        if ($user instanceof Participant) {
+            return $this->participants()->where('participant_id', $user->id)->exists();
+        }
+        return true;
     }
 
     /**
-     * Register that a participant has voted, but not what the participant voted for.
+     * Register that a user has voted, but not what the user voted for.
+     *
+     * @param $user Admin|Participant
      */
-    public function registerVoteByParticipant($participant)
+    public function registerVote($user)
     {
-        $this->participants()->attach($participant);
-    }
-
-    public function isClosed()
-    {
-        return $this->status == 'closed';
+        if ($user instanceof User) {
+            $this->admins()->attach($user);
+        }
+        if ($user instanceof Participant) {
+            $this->participants()->attach($user);
+        }
     }
 }

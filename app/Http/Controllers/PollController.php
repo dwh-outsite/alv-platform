@@ -11,14 +11,14 @@ class PollController extends Controller
 {
     public function store(PollOption $pollOption, Request $request)
     {
-        if ($pollOption->poll->participantHasVotedAlready($request->user())) {
+        if ($pollOption->poll->alreadyVoted($request->user())) {
             return response(['error' => 'Cannot vote twice for the same poll.'], 422);
         }
 
         try {
             $pollOption->incrementVotes();
 
-            $pollOption->poll->registerVoteByParticipant($request->user());
+            $pollOption->poll->registerVote($request->user());
 
             event(new PollVotesHaveChanged($pollOption->poll));
 
