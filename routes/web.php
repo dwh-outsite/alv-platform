@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 /**
  * Participant routes
  */
-
 Route::view('/login', 'login')->name('login');
 
 Route::post('/login', LoginController::class)->name('login-post');
@@ -38,7 +37,6 @@ Route::middleware('auth')->group(function () {
 /**
  * Admin routes
  */
-
 Route::get('/admin/login', function () {
     auth()->logout();
     return view('admin.login');
@@ -46,11 +44,8 @@ Route::get('/admin/login', function () {
 
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login-post');
 
-Route::middleware('auth:admin')->prefix('admin')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index']);
-});
-
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin', [AdminDashboardController::class, 'index']);
     Route::post('/polls', [AdminPollController::class, 'store']);
     Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
 });
@@ -58,7 +53,6 @@ Route::middleware('auth:admin')->group(function () {
 /**
  * Output routes
  */
-
 Route::view('/output', 'output');
 
 Route::middleware('auth:admin')->group(function () {
