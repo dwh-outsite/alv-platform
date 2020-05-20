@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model implements Authenticatable
 {
+    protected $guarded = [];
+
     /* Authenticatable methods */
+
+    public static function generateCode($length = 4) {
+        return bin2hex(openssl_random_pseudo_bytes($length));
+    }
 
     public function getAuthIdentifierName()
     {
