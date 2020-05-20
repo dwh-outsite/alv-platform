@@ -229,4 +229,6 @@ return [
 
     ],
 
+    'stream_url' => env('STREAM_URL')
+
 ];
