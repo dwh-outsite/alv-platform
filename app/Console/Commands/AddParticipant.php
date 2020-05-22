@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\Invite;
 use App\Participant;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class AddParticipant extends Command
 {
@@ -31,16 +33,20 @@ class AddParticipant extends Command
         $nameAndEmail = $this->ask('What is the name and email address? (seperated by ` - `)?');
         $this->info('Thank you.');
         [$name, $email] = explode(' - ', $nameAndEmail);
-        $this->info('Name: ' . $name);
-        $this->info('Email: ' . $email);
+        $this->info('Name: '.$name);
+        $this->info('Email: '.$email);
 
         $this->info('Generating code...');
         $code = Participant::generateCode();
-        $this->info('Code: ' . $code);
+        $this->info('Code: '.$code);
 
         if ($this->confirm('Are you sure you want to create a participant using the details listed above?')) {
             $participant = Participant::create(compact('name', 'email', 'code'));
             $this->info("Participant created with id {$participant->id}.");
+
+            if ($this->confirm('Do you want to send an invite to this participant right now?')) {
+                Mail::to($participant->email)->queue(new Invite($participant));
+            }
         }
     }
 }
