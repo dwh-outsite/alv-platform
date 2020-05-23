@@ -2,7 +2,7 @@
     <div class="bg-purple-100 p-2 rounded-md flex items-center">
         <div class="h-2 w-2 mr-2 rounded-full bg-purple-500"></div>
         <span class="text-purple-500 uppercase tracking-wider text-xs">
-            Connected ({{ participantsCount }} participants)
+            Connected ({{ participants.length }} participants)
         </span>
     </div>
 </template>
@@ -11,14 +11,20 @@
     export default {
         data() {
             return {
-                participantsCount: 0
+                participants: []
             }
         },
         mounted() {
             Echo.join('participants')
-                .here(users => { this.participantsCount = users.length })
-                .joining(user => { this.participantsCount++ })
-                .leaving(user => { this.participantsCount-- })
+                .here(users => { this.participants = users })
+                .joining(user => {
+                    if (!this.participants.find(other => other.id == user.id && other.type == user.type)) {
+                        this.participants.push(user)
+                    }
+                })
+                .leaving(user => {
+                    this.participants = _.reject(this.participants, other => other.id == user.id && other.type == user.type)
+                })
         }
     }
 </script>

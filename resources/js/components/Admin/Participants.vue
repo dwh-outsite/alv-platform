@@ -1,5 +1,10 @@
 <template>
     <div>
+        <div class="p-4 pb-0 text-sm">
+            <strong>Please note:</strong>
+            When someone opens multiple sessions (multiple browser tabs for example) and closes just one of them,
+            the participant will be shown as "left" but in fact is still present using the other session.
+        </div>
         <div
             v-for="participant in sortedPartipants"
             class="rounded m-4 p-2"
