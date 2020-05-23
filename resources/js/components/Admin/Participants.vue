@@ -8,7 +8,11 @@
         <div
             v-for="participant in sortedPartipants"
             class="rounded m-4 p-2"
-            :class="participant.present ? 'bg-green-900' : 'border border-gray-700 text-gray-700'"
+            :class="
+                participant.present ?
+                    (participant.type == 'admin' ? 'bg-purple-900' : 'bg-green-900')
+                    : 'border border-gray-700 text-gray-700'
+            "
         >
             {{ participant.name }}
         </div>
