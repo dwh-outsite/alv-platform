@@ -31,17 +31,11 @@
 
 <script>
     export default {
-        props: ['initialQuestions'],
         data() {
             return {
                 lowerThirds: [],
                 form: { name: '', title: '' }
             }
-        },
-        mounted() {
-            Echo.private('questions').listen('QuestionWasAsked', event => {
-                this.questions.unshift(event.question)
-            })
         },
         methods: {
             submit() {
