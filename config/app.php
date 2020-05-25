@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Amsterdam',
 
     /*
     |--------------------------------------------------------------------------
@@ -229,6 +229,8 @@ return [
 
     ],
 
-    'stream_url' => env('STREAM_URL')
-
+    'event' => [
+        'stream_url' => env('EVENT_STREAM_URL'),
+        'start_time' => env('EVENT_START_TIME'),
+    ]
 ];

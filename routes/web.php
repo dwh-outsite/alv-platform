@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\StreamOutputController;
+use App\Http\Middleware\CheckIfEventStarted;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,9 @@ Route::view('/login', 'login')->name('login');
 Route::post('/login', LoginController::class)->name('login-post');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/', 'live');
-    Route::view('/live', 'live')->name('live'); // TODO: Test auth requirement
+    Route::redirect('/', 'live');
+    Route::view('/live', 'live')->name('live')->middleware(CheckIfEventStarted::class); // TODO: Test auth requirement
+    Route::view('/starting-soon', 'starting_soon')->name('starting_soon')->middleware(CheckIfEventStarted::class);;
     Route::post('/questions', [QuestionsController::class, 'store']);
 });
 
