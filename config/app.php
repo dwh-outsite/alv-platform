@@ -232,5 +232,6 @@ return [
     'event' => [
         'stream_url' => env('EVENT_STREAM_URL'),
         'start_time' => env('EVENT_START_TIME'),
+        'lower_thirds' => env('EVENT_LOWER_THIRDS'),
     ]
 ];

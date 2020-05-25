@@ -31,9 +31,10 @@
 
 <script>
     export default {
+        props: ['initialLowerThirds'],
         data() {
             return {
-                lowerThirds: [],
+                lowerThirds: this.initialLowerThirds,
                 form: { name: '', title: '' }
             }
         },

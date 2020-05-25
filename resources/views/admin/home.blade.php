@@ -17,7 +17,7 @@
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Lower Thirds
                 </div>
-                <admin-lower-thirds />
+                <admin-lower-thirds :initial-lower-thirds="{!! config('app.event.lower_thirds', '[]') !!}" />
             </div>
             <div class="border-t-2 border-gray-400">
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
