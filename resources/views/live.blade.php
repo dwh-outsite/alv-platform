@@ -8,7 +8,7 @@
                     Stemmingen
                 </div>
                 <div class="h-full">
-                    <poll />
+                    <poll :initial-poll='@json($poll)' />
                 </div>
             </div>
             <div class="border-t-2 border-gray-400">

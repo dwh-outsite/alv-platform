@@ -39,14 +39,19 @@
 
 <script>
     export default {
+        props: ['initialPoll'],
         data() {
             return {
                 state: 'closed',
                 selected: undefined,
-                poll: undefined
+                poll: this.initialPoll
             }
         },
         mounted() {
+            if (this.poll) {
+                this.state = 'open'
+            }
+
             Echo.private('polls').listen('PollStatusHasChanged', event => {
                 this.poll = event.poll
                 this.state = event.poll.status

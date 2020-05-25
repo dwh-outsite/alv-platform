@@ -9,6 +9,10 @@ class Poll extends Model
     protected $guarded = [];
     protected $with = ['options'];
 
+    public static function getOpenPoll() {
+        return static::where('status', 'open')->latest()->first();
+    }
+
     public function isClosed()
     {
         return $this->status == 'closed';

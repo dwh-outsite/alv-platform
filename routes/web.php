@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\PollController as AdminPollController;
+use App\Http\Controllers\LiveController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\QuestionsController;
@@ -30,8 +31,12 @@ Route::post('/login', LoginController::class)->name('login-post');
 
 Route::middleware('auth')->group(function () {
     Route::redirect('/', 'live');
-    Route::view('/live', 'live')->name('live')->middleware(CheckIfEventStarted::class); // TODO: Test auth requirement
-    Route::view('/starting-soon', 'starting_soon')->name('starting_soon')->middleware(CheckIfEventStarted::class);;
+    Route::get('/live', LiveController::class)
+        ->name('live')
+        ->middleware(CheckIfEventStarted::class);
+    Route::view('/starting-soon', 'starting_soon')
+        ->name('starting_soon')
+        ->middleware(CheckIfEventStarted::class);;
     Route::post('/questions', [QuestionsController::class, 'store']);
 });
 
