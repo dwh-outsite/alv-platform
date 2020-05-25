@@ -23,7 +23,12 @@
         <div class="flex-1 flex flex-col justify">
             <div>
                 <div class="embed-responsive aspect-ratio-16/9">
-                    <iframe class="embed-responsive-item" src="{{ config('app.event.stream_url') }}"></iframe>
+                    <iframe
+                        class="embed-responsive-item"
+                        src="{{ config('app.event.stream_url') }}"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                    ></iframe>
                 </div>
             </div>
             <div class="flex-1 border-t-2 border-gray-400 flex flex-col">
