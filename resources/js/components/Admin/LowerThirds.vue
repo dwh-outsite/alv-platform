@@ -14,15 +14,13 @@
                 </div>
             </div>
         </div>
-        <div>
-            <div class="bg-purple-900 px-4 p-4">
-                <input v-model="form.name" type="text" class="form-input w-full border-0 shadow bg-purple-700 mb-4 text-white" placeholder="Name">
-                <input v-model="form.title" type="text" class="form-input w-full border-0 shadow bg-purple-700 mb-4 text-white" placeholder="Title">
-                <div class="mt-2 flex justify-end items-center">
-                    <button @click="submit()" class="bg-purple-200 hover:bg-white text-base py-2 px-4 rounded text-black">
-                        Add Lower Third
-                    </button>
-                </div>
+        <div class="bg-purple-900 px-4 p-4">
+            <input v-model="form.name" type="text" class="form-input w-full border-0 shadow bg-purple-700 mb-4 text-white" placeholder="Name">
+            <input v-model="form.title" type="text" class="form-input w-full border-0 shadow bg-purple-700 mb-4 text-white" placeholder="Title">
+            <div class="mt-2 flex justify-end items-center">
+                <button @click="submit()" class="bg-purple-200 hover:bg-white text-base py-2 px-4 rounded text-black">
+                    Add Lower Third
+                </button>
             </div>
         </div>
     </div>
