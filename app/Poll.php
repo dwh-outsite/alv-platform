@@ -25,12 +25,12 @@ class Poll extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(Participant::class);
+        return $this->belongsToMany(Participant::class)->withTimestamps();
     }
 
     public function admins()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
     public function alreadyVoted($user)
