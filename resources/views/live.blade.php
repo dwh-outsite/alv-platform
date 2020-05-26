@@ -13,15 +13,15 @@
             </div>
             <div class="border-t-2 border-gray-400">
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
-                    Vergaderstukken
+                    Stel een vraag
                 </div>
-                <div class="py-3 px-4">
-                    <files-list folder-id="1CGDDk8iXkluXqHZf7NEWgcmKmKtaQSSi" />
+                <div class="flex-1">
+                    <question />
                 </div>
             </div>
         </div>
         <div class="flex-1 flex flex-col justify">
-            <div>
+            <div class="flex-1 bg-black flex flex-col justify-center">
                 <div class="embed-responsive aspect-ratio-16/9">
                     <iframe
                         class="embed-responsive-item"
@@ -31,12 +31,12 @@
                     ></iframe>
                 </div>
             </div>
-            <div class="flex-1 border-t-2 border-gray-400 flex flex-col">
+            <div class="border-t-2 border-gray-400 flex flex-col">
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
-                    Stel een vraag
+                    Vergaderstukken
                 </div>
-                <div class="flex-1">
-                    <question />
+                <div class="py-3 px-4">
+                    <files-list folder-id="1CGDDk8iXkluXqHZf7NEWgcmKmKtaQSSi" />
                 </div>
             </div>
         </div>

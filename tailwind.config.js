@@ -8,6 +8,7 @@ module.exports = {
     extend: {
         skew: {
             '1.5': '1.5deg',
+
             '-1.5': '-1.5deg',
         },
         borderWidth: {
@@ -24,7 +25,7 @@ module.exports = {
       "4/3": [4, 3],
       "21/9": [21, 9]
     },
-    maxHeight: {
+    minHeight: {
       48: '12rem'
     }
   },

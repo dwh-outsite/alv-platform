@@ -1,27 +1,29 @@
 <template>
-    <div class="h-full flex p-4 text-gray-100 max-h-48">
-        <textarea
-            v-if="state == 'available' || state == 'loading'"
-            v-model="question"
-            class="flex-1 mr-4 form-input h-full border-0 shadow bg-gray-800"
-            placeholder="Schrijf hier je vraag en klik daarna rechts op versturen ..."
-        />
+    <div class="h-full flex p-4 text-gray-100 min-h-48">
         <div
             v-if="state == 'submitted'"
-            class="flex-1 mr-4 form-input h-full border-0 shadow bg-green-800 flex items-center justify-center"
+            class="flex-1 mr-4 form-input  border-0 shadow bg-green-800 flex items-center justify-center"
         >
             <div class="text-center">
                 <div class="font-bold">Bedankt voor je vraag!</div>
                 We beantwoorden je vraag zo snel mogelijk
             </div>
         </div>
+        <textarea
+            v-if="state == 'available' || state == 'loading'"
+            v-model="question"
+            class="flex-1 mr-4 form-input border-0 shadow bg-gray-800"
+            placeholder="Schrijf hier je vraag en klik daarna rechts op versturen ..."
+        />
         <button
+            v-if="state == 'available' || state == 'loading'"
             @click="submit"
-            class="bg-gray-700 font-bold p-4 rounded"
+            class="bg-gray-700 font-bold p-4 px-6 rounded leading-relaxed"
             :class="question != '' ? 'bg-purple-700 hover:bg-purple-500' : ''"
             :disabled="state !== 'available' || question == ''"
         >
-            Vraag versturen
+            Vraag<br />
+            Versturen
         </button>
     </div>
 </template>
