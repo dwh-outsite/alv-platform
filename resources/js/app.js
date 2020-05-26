@@ -21,6 +21,7 @@ Vue.component('admin-participants', require('./components/Admin/Participants.vue
 Vue.component('admin-polls', require('./components/Admin/Polls.vue').default);
 Vue.component('admin-lower-thirds', require('./components/Admin/LowerThirds.vue').default);
 Vue.component('admin-hide-button', require('./components/Admin/HideButton.vue').default);
+Vue.component('admin-show-agenda', require('./components/Admin/ShowAgenda.vue').default);
 
 Vue.component('stream-output', require('./components/StreamOutput/StreamOutput.vue').default);
 

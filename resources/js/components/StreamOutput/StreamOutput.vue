@@ -10,17 +10,21 @@
         <transition name="slide-right">
             <Poll v-if="active == 'poll'" :data="data.poll" />
         </transition>
+        <transition name="slide-right">
+            <Agenda v-if="active == 'agenda'" />
+        </transition>
     </div>
 </template>
 
 <script>
     import Logo from './Logo'
+    import Agenda from './Agenda'
     import LowerThird from './LowerThird'
     import Question from './Question'
     import Poll from './Poll'
 
     export default {
-        components: { Logo, LowerThird, Question, Poll },
+        components: { Logo, Agenda, LowerThird, Question, Poll },
         data () {
             return {
                 active: undefined,

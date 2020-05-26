@@ -30,6 +30,9 @@
                 </div>
                 <div class="flex items-center text-right text-sm">
                     @if (auth()->user() instanceof App\User)
+                        <div class="mr-3">
+                            <admin-show-agenda />
+                        </div>
                         <div class="mr-6">
                             <admin-hide-button />
                         </div>

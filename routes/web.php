@@ -68,5 +68,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/output/poll/{poll}', [StreamOutputController::class, 'showPoll']);
     Route::post('/output/question/{question}', [StreamOutputController::class, 'showQuestion']);
     Route::post('/output/lowerthird', [StreamOutputController::class, 'showLowerThird']);
+    Route::post('/output/agenda', [StreamOutputController::class, 'showAgenda']);
     Route::post('/output/hide', [StreamOutputController::class, 'hideAll']);
 });

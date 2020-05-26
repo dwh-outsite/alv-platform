@@ -30,6 +30,11 @@ class StreamOutputController extends Controller
         ));
     }
 
+    public function showAgenda()
+    {
+        event(new StreamOutputHasChanged('agenda', null));
+    }
+
     public function hideAll()
     {
         event(new StreamOutputHasChanged(null, null));

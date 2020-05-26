@@ -1,21 +1,21 @@
 <template>
     <button
-        @click="hideAll()"
-        class="bg-red-900 hover:bg-red-700 text-xs text-gray-100 py-2 px-4 rounded"
+        @click="showAgenda()"
+        class="bg-purple-500 hover:bg-purple-700 text-xs text-gray-100 py-2 px-4 rounded"
     >
-        Hide All on Stream
+        Show Agenda on Stream
     </button>
 </template>
 
 <script>
     export default {
         methods: {
-            hideAll() {
-                axios.post('/output/hide')
+            showAgenda() {
+                axios.post('/output/agenda')
                     .then(() => {
                         this.$notify({
                             type: 'success',
-                            title: 'All components are now hidden',
+                            title: 'The agenda is now being shown',
                             text: 'The actions was executed successfully.'
                         })
                     })
