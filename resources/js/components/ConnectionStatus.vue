@@ -2,13 +2,14 @@
     <div class="bg-purple-100 p-2 rounded-md flex items-center">
         <div class="h-2 w-2 mr-2 rounded-full bg-purple-500"></div>
         <span class="text-purple-500 uppercase tracking-wider text-xs">
-            Connected ({{ participants.length }} participants)
+            Connected <span v-if="showParticipants">({{ participants.length }} participants)</span>
         </span>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['showParticipants'],
         data() {
             return {
                 participants: []

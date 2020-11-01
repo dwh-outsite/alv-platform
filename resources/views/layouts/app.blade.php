@@ -26,7 +26,7 @@
             </div>
             @auth
                 <div>
-                    <connection-status />
+                    <connection-status show-participants="{{ auth()->user() instanceof App\User }}" />
                 </div>
                 <div class="flex items-center text-right text-sm">
                     @if (auth()->user() instanceof App\User)
