@@ -1,8 +1,13 @@
 <template>
     <div v-if="files.length > 0" class="h-full flex items-center">
-        <div v-for="file in files" :key="file.id" class="flex-1 bg-gray-700 hover:bg-gray-500 p-3 rounded m-1 text-center">
-            <a :href="file.webViewLink" target="_blank" class="h-full" v-text="file.name" />
-        </div>
+        <a
+            v-for="file in files"
+            :key="file.id"
+            :href="file.webViewLink"
+            v-text="file.name"
+            target="_blank"
+            class="block bg-gray-700 hover:bg-gray-500 p-3 rounded m-1 text-center"
+        />
     </div>
 </template>
 

@@ -36,7 +36,7 @@
                     Vergaderstukken
                 </div>
                 <div class="py-3 px-4">
-                    <files-list folder-id="1CGDDk8iXkluXqHZf7NEWgcmKmKtaQSSi" />
+                    <files-list folder-id="1_6nv1t98eJyvKLIInKx8pRbPl0eMwOgD" />
                 </div>
             </div>
         </div>
