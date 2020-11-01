@@ -36,9 +36,13 @@
                     class="flex justify-between my-2 p-4 rounded border border-gray-700"
                     :class="votes.options.includes(option.id) ? 'bg-gray-700' : ''"
                 >
-                    <div>{{ option.answer }}</div>
-                    <div>
-                        {{ option.votes }}
+                    {{ option.answer }}
+                    <div class="flex items-center">
+                        <div class="w-20 bg-gray-700 h-3">
+                            <div class="bg-gray-500 h-full" :style="`width: ${percentage(option, poll.options)}%;`" />
+                        </div>
+                        <div class="w-12 text-right text-gray-500">{{ percentage(option, poll.options) }}%</div>
+                        <div class="w-6 text-right">{{ option.votes }}</div>
                         <button
                             v-if="poll.status == 'open' && !votes.polls.includes(poll.id)"
                             @click="vote(poll.id, option.id)"
@@ -144,6 +148,9 @@
                             text: 'The actions could not be executed successfully.'
                         })
                     })
+            },
+            percentage(option, options) {
+                return Math.round(option.votes / options.reduce((votes, option) => votes + option.votes, 0) * 100)
             }
         }
     }
