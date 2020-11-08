@@ -12,7 +12,18 @@
                         <div class="rounded-l bg-purple-500 p-4 text-white w-16 text-center font-bold">
                             {{ i + 1 }}
                         </div>
-                        <div class="p-4 font-semibold">{{ item }}</div>
+                        <div v-if="typeof item === 'string'" class="p-4 font-semibold">{{ item }}</div>
+                        <div v-else class="p-4">
+                            <div class="font-semibold mb-4">{{ item.title }}</div>
+                            <div class="space-y-2">
+                                <div v-for="(subItem, i) in item.items" class="flex items-center">
+                                    <div class="font-semibold rounded-full bg-purple-100 flex items-center justify-center mr-2 flex overflow-hidden">
+                                        <div class="bg-purple-400 w-10 text-center py-2 pl-1 text-white font-bold">{{ i + 1 }}</div>
+                                        <div class="pr-4 pl-2 py-2">{{ subItem }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,22 +38,13 @@
         components: { LogoColor },
         data () {
             return {
-                data: {
-                    question: 'test',
-                    options: [
-                        {answer: 'hi', votes: 3}
-                    ]
-                },
                 agenda: [
                     'Opening',
-                    'Agendavaststelling',
-                    'Mededelingen',
+                    'Vaststellen agenda',
                     'Vaststellen notulen',
-                    'Jaarverslag 2019',
-                    'Jaarrekening 2019',
-                    'Decharge',
-                    'Kascontrolecommissie',
-                    'Begrotingswijziging',
+                    'Mededelingen',
+                    'Begroting 2021',
+                    { title: 'Bestuurswisseling', items: ['Voordracht', 'Stemming', 'Aftreden'] },
                     'Rondvraag',
                     'Sluiting'
                 ]
