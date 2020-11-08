@@ -1,18 +1,10 @@
 <template>
     <div class="text-white h-full relative overflow-hidden">
         <Logo />
-        <transition name="slide-bottom">
-            <LowerThird v-if="active == 'lowerThird' && lowerThirdActive" :data="data.lowerThird" />
-        </transition>
-        <transition name="slide-bottom">
-            <Question v-if="active == 'question'" :data="data.question" />
-        </transition>
-        <transition name="slide-right">
-            <Poll v-if="active == 'poll'" :data="data.poll" />
-        </transition>
-        <transition name="slide-right">
-            <Agenda v-if="active == 'agenda'" />
-        </transition>
+        <LowerThird v-if="active == 'lowerThird' && lowerThirdActive" :data="data.lowerThird" />
+        <Question v-if="active == 'question'" :data="data.question" />
+        <Poll v-if="active == 'poll'" :data="data.poll" />
+        <Agenda v-if="active == 'agenda'" />
     </div>
 </template>
 
