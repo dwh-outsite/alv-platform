@@ -29,9 +29,6 @@ use Illuminate\Support\Facades\Route;
 Route::view('/login', 'login')->name('login');
 Route::post('/login', LoginController::class)->name('login-post');
 
-Route::view('/register', 'register')->name('register');
-Route::post('/register', RegisterController::class)->name('register-post');
-
 Route::middleware('auth')->group(function () {
     Route::redirect('/', 'live');
     Route::get('/live', LiveController::class)
@@ -41,6 +38,9 @@ Route::middleware('auth')->group(function () {
         ->name('starting_soon')
         ->middleware(CheckIfEventStarted::class);;
     Route::post('/questions', [QuestionsController::class, 'store']);
+      
+    Route::view('/register', 'register')->name('register');
+    Route::post('/register', RegisterController::class)->name('register-post');
 });
 
 Route::post('/polls/vote/{pollOption}', [PollController::class, 'store'])
