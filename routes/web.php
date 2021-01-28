@@ -57,7 +57,13 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index']);
     Route::post('/polls', [AdminPollController::class, 'store']);
     Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
-      
+
+    Route::get('/admin/tokens/create', function () {
+        $token = request()->user()->createToken(request()->input('name'));
+
+        return ['token' => $token->plainTextToken];
+    });
+
     Route::view('/register', 'register')->name('register');
     Route::post('/register', RegisterController::class)->name('register-post');
 });
@@ -67,7 +73,7 @@ Route::middleware('auth:admin')->group(function () {
  */
 Route::view('/output', 'output');
 
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth:admin,sanctum')->group(function () {
     Route::post('/output/poll/{poll}', [StreamOutputController::class, 'showPoll']);
     Route::post('/output/question/{question}', [StreamOutputController::class, 'showQuestion']);
     Route::post('/output/lowerthird', [StreamOutputController::class, 'showLowerThird']);
