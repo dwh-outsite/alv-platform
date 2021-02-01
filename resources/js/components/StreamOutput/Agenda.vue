@@ -41,10 +41,13 @@
                 agenda: [
                     'Opening',
                     'Vaststellen agenda',
-                    'Vaststellen notulen',
                     'Mededelingen',
                     'Begroting 2021',
-                    { title: 'Bestuurswisseling', items: ['Voordracht', 'Stemming', 'Aftreden'] },
+                    'Barbeheer',
+                    'C.S.R. Party',
+                    'Huisregels',
+                    'Distanced Activities',
+                    'Hide and Seek',
                     'Rondvraag',
                     'Sluiting'
                 ]
