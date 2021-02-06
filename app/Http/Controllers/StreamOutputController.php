@@ -35,6 +35,11 @@ class StreamOutputController extends Controller
         event(new StreamOutputHasChanged('agenda', null));
     }
 
+    public function showVoteCountdown(Request $request)
+    {
+        event(new StreamOutputHasChanged('voteCountdown', $request->only('seconds')));
+    }
+
     public function hideAll()
     {
         event(new StreamOutputHasChanged(null, null));
