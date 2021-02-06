@@ -6,7 +6,7 @@
                 Je hebt nog <strong v-text="remainingSeconds"/> seconden om te stemmen.
                 </span>
                 <span v-else>
-                    Bedankt voor het stemmen! {{ remainingSeconds }}
+                    Bedankt voor het stemmen!
                 </span>
             </div>
         </div>
