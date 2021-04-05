@@ -7,20 +7,20 @@
 }
 
 .slide-bottom-enter-active {
-    animation: slideInBottom 1s forwards;
+    animation: slideInBottom .5s forwards;
 }
 
 .slide-bottom-leave-active {
-    animation: slideInBottom 1s forwards;
+    animation: slideInBottom .5s forwards;
     animation-direction: reverse;
 }
 
 .slide-right-enter-active {
-    animation: slideInRight 1s forwards;
+    animation: slideInRight .5s forwards;
 }
 
 .slide-right-leave-active {
-    animation: slideInRight 1s forwards;
+    animation: slideInRight .5s forwards;
     animation-direction: reverse;
 }
 
