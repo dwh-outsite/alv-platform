@@ -15,7 +15,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="antialiased leading-none" style="width: 1920px; height: 1080px;">
+<body class="antialiased leading-none bg-black" style="width: 1920px; height: 1080px; cursor: none;">
     <div id="app" class="h-full">
         <stream-output />
     </div>
