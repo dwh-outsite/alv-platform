@@ -40,14 +40,12 @@
             return {
                 agenda: [
                     'Opening',
-                    'Vaststellen agenda',
+                    'Vaststelling agenda',
+                    'Vaststelling notulen',
                     'Mededelingen',
-                    'Begroting 2021',
-                    'Barbeheer',
-                    'C.S.R. Party',
-                    'Huisregels',
-                    'Distanced Activities',
-                    'Hide and Seek',
+                    'Controlecommissie',
+                    'Verhuur aan AEGEE',
+                    'Benoeming bestuursleden',
                     'Rondvraag',
                     'Sluiting'
                 ]
