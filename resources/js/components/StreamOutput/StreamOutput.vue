@@ -1,6 +1,6 @@
 <template>
     <div class="text-white h-full relative overflow-hidden">
-        <Logo />
+        <!--<Logo />-->
         <transition name="slide-bottom">
             <LowerThird v-if="active == 'lowerThird' && lowerThirdActive" :data="data.lowerThird" />
         </transition>
