@@ -29,7 +29,7 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request, array $guards)
+    protected function redirectTo($request, array $guards = [])
     {
         if (! $request->expectsJson()) {
             if (in_array('participants', $guards)) {
