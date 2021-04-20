@@ -13,13 +13,15 @@
             </div>
         </div>
         <div class="border-r-2 border-gray-400 flex-1 flex flex-col justify">
-            <div>
-                <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
-                    Lower Thirds
+            @if (auth()->user()->isAdmin())
+                <div class="border-b-2 border-gray-400">
+                    <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
+                        Lower Thirds
+                    </div>
+                    <admin-lower-thirds :initial-lower-thirds="{!! config('app.event.lower_thirds', '[]') !!}" />
                 </div>
-                <admin-lower-thirds :initial-lower-thirds="{!! config('app.event.lower_thirds', '[]') !!}" />
-            </div>
-            <div class="border-t-2 border-gray-400">
+            @endif
+            <div>
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Questions
                 </div>

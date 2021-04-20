@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * "Rough" admin check for components that are not relevant to board members.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->email == 'mail@casperboone.nl';
+    }
 }
