@@ -78,6 +78,7 @@ Route::middleware('auth:admin,sanctum')->group(function () {
     Route::post('/output/question/{question}', [StreamOutputController::class, 'showQuestion']);
     Route::post('/output/lowerthird', [StreamOutputController::class, 'showLowerThird']);
     Route::post('/output/agenda', [StreamOutputController::class, 'showAgenda']);
-    Route::post('/output/vote-countdown', [StreamOutputController::class, 'showVoteCountdown']);
+    Route::post('/output/vote-countdown-show', [StreamOutputController::class, 'showVoteCountdown']);
+    Route::post('/output/vote-countdown-hide', [StreamOutputController::class, 'hideVoteCountdown']);
     Route::post('/output/hide', [StreamOutputController::class, 'hideAll']);
 });

@@ -24,6 +24,15 @@
     animation-direction: reverse;
 }
 
+.slide-left-right-enter-active {
+    animation: slideInLeft .5s forwards;
+}
+
+.slide-left-right-leave-active {
+    animation: slideInRight .5s forwards;
+    animation-direction: reverse;
+}
+
 @keyframes slideInBottom {
     0% {
         transform: translateY(1080px);
@@ -36,6 +45,15 @@
 @keyframes slideInRight {
     0% {
         transform: translateX(1920px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-1920px);
     }
     100% {
         transform: translateX(0);

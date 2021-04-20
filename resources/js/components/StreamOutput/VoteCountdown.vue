@@ -1,9 +1,9 @@
 <template>
-    <div class="absolute bottom-0 w-full text-gray-800">
-        <div class="mx-auto w-1/2 pb-20">
+    <div class="absolute top-0 w-full text-gray-800">
+        <div class="mx-auto w-1/2 pt-12">
             <div class="bg-white-transparent w-full p-6 py-8 porigin-top-left rounded-full text-center text-4xl">
                 <span v-if="remainingSeconds > 0">
-                Je hebt nog <strong v-text="remainingSeconds"/> seconden om te stemmen.
+                Je hebt nog <strong class="w-12 mx-2 inline-block text-center" v-text="remainingSeconds"/> seconden om te stemmen.
                 </span>
                 <span v-else>
                     Bedankt voor het stemmen!

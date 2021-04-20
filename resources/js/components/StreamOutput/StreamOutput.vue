@@ -1,6 +1,6 @@
 <template>
     <div class="text-white h-full relative overflow-hidden">
-        <!--<Logo />-->
+        <Logo />
         <transition name="slide-bottom">
             <LowerThird v-if="active == 'lowerThird' && lowerThirdActive" :data="data.lowerThird" />
         </transition>
@@ -13,8 +13,8 @@
         <transition name="slide-right">
             <Agenda v-if="active == 'agenda'" />
         </transition>
-        <transition name="slide-bottom">
-            <VoteCountdown ref="voteCountdown" v-show="active == 'voteCountdown'" @hide="hideIfActive('voteCountdown')" />
+        <transition name="slide-left-right">
+            <VoteCountdown ref="voteCountdown" v-show="voteCountdownActive" @hide="voteCountdownActive = false" />
         </transition>
     </div>
 </template>
@@ -39,17 +39,29 @@
                     voteCountdown: { seconds: 0 }
                 },
                 lowerThirdActive: false,
-                lowerThirdTimeOut: undefined
+                lowerThirdTimeOut: undefined,
+                voteCountdownActive: false
             }
         },
         mounted() {
-            Echo.channel('stream-output').listen('StreamOutputHasChanged', event => {
+            Echo.channel('stream-output').listen('StreamOutputHasChanged', event =>
+                event.type.startsWith('voteCountdown')
+                    ? this.handleVoteCountdownEvent(event)
+                    : this.handleOutputChangeEvent(event)
+            )
+        },
+        methods: {
+            handleVoteCountdownEvent(event) {
+                if (event.type.endsWith('Show')) {
+                    this.voteCountdownActive = true
+                    this.$refs.voteCountdown.start(event.data.seconds)
+                } else {
+                    this.voteCountdownActive = false
+                }
+            },
+            handleOutputChangeEvent(event) {
                 this.active = event.type
                 this.data[event.type] = event.data
-
-                if (event.type == 'voteCountdown') {
-                    this.$refs.voteCountdown.start(event.data.seconds)
-                }
 
                 if (event.type == 'lowerThird') {
                     this.lowerThirdActive = true
@@ -59,13 +71,6 @@
                     this.lowerThirdTimeOut = window.setTimeout(() => {
                         this.lowerThirdActive = false
                     }, 7000)
-                }
-            })
-        },
-        methods: {
-            hideIfActive(name) {
-                if (this.active == name) {
-                    this.active = undefined
                 }
             }
         }
