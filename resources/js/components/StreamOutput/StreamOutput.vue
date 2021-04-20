@@ -45,7 +45,7 @@
         },
         mounted() {
             Echo.channel('stream-output').listen('StreamOutputHasChanged', event =>
-                event.type.startsWith('voteCountdown')
+                event.type && event.type.startsWith('voteCountdown')
                     ? this.handleVoteCountdownEvent(event)
                     : this.handleOutputChangeEvent(event)
             )
