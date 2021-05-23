@@ -40,14 +40,16 @@
             return {
                 agenda: [
                     'Opening',
-                    'Vaststelling agenda',
-                    'Vaststelling notulen',
+                    'Vaststelling Agenda',
+                    'Vaststelling Notulen',
                     'Mededelingen',
-                    'Controlecommissie',
-                    'Verhuur aan AEGEE',
-                    'Benoeming bestuursleden',
-                    'Rondvraag',
-                    'Sluiting'
+                    'Jaarverslag 2020',
+                    'Jaarstukken 2020',
+                    'Kwijting',
+                    'Controlecommissie 2021',
+                    'Herbegroting 2021',
+                    'Bestuurswisseling',
+                    'Rondvraag en Sluiting',
                 ]
             }
         }

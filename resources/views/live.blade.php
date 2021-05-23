@@ -49,7 +49,7 @@
                     Vergaderstukken
                 </div>
                 <div class="py-3 px-4">
-                    <files-list folder-id="1_6nv1t98eJyvKLIInKx8pRbPl0eMwOgD" />
+                    <files-list folder-id="{{ config('app.event.drive_id') }}" />
                 </div>
             </div>
         </div>

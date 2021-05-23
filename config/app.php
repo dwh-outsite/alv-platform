@@ -234,6 +234,7 @@ return [
         'start_time' => env('EVENT_START_TIME'),
         'lower_thirds' => env('EVENT_LOWER_THIRDS'),
         'zoom_url' => env('EVENT_ZOOM_URL'),
+        'drive_id' => env('EVENT_DRIVE_ID'),
     ],
 
     'admin' => [
