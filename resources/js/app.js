@@ -23,6 +23,9 @@ Vue.component('admin-lower-thirds', require('./components/Admin/LowerThirds.vue'
 Vue.component('admin-hide-button', require('./components/Admin/HideButton.vue').default);
 Vue.component('admin-show-agenda', require('./components/Admin/ShowAgenda.vue').default);
 Vue.component('admin-show-vote-countdown', require('./components/Admin/ShowVoteCountdown.vue').default);
+Vue.component('admin-countdown', require('./components/Admin/Countdown.vue').default);
+Vue.component('admin-message', require('./components/Admin/Message.vue').default);
+Vue.component('admin-upper-third', require('./components/Admin/UpperThird.vue').default);
 
 Vue.component('stream-output', require('./components/StreamOutput/StreamOutput.vue').default);
 

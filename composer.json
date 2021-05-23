@@ -19,6 +19,7 @@
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "pragmarx/firewall": "^2.3",
         "pusher/pusher-php-server": "~3.0",
         "wildbit/swiftmailer-postmark": "^3.3"
     },

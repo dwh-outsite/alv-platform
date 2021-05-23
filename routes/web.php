@@ -3,6 +3,10 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\PollController as AdminPollController;
+use App\Http\Controllers\Admin\GraphicsController as AdminGraphicsController;
+use App\Http\Controllers\Admin\QuestionsController as AdminQuestionsController;
+use App\Http\Controllers\Admin\ParticipantController as AdminParticipantController;
+use App\Http\Controllers\Admin\FirewallController as AdminFirewallController;
 use App\Http\Controllers\LiveController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -57,9 +61,14 @@ Route::get('/admin/login', function () {
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login-post');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin', [AdminDashboardController::class, 'index']);
-    Route::post('/polls', [AdminPollController::class, 'store']);
-    Route::put('/polls/{poll}', [AdminPollController::class, 'update']);
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.interactive');
+    Route::get('/admin/interactive', [AdminDashboardController::class, 'index'])->name('admin.interactive');
+    Route::get('/admin/graphics', [AdminGraphicsController::class, 'index'])->name('admin.graphics');
+    Route::get('/admin/participant/{participant}', AdminParticipantController::class)->name('admin.participant');
+    Route::post('/admin/polls', [AdminPollController::class, 'store']);
+    Route::put('/admin/polls/{poll}', [AdminPollController::class, 'update']);
+    Route::post('/admin/questions', [AdminQuestionsController::class, 'store']);
+    Route::post('/admin/firewall', AdminFirewallController::class)->name('admin.firewall');
 
     Route::get('/admin/tokens/create', function () {
         $token = request()->user()->createToken(request()->input('name'));
@@ -75,10 +84,14 @@ Route::view('/output', 'output');
 
 Route::middleware('auth:admin,sanctum')->group(function () {
     Route::post('/output/poll/{poll}', [StreamOutputController::class, 'showPoll']);
+    Route::post('/output/poll-question/{poll}', [StreamOutputController::class, 'showPollQuestion']);
     Route::post('/output/question/{question}', [StreamOutputController::class, 'showQuestion']);
+    Route::post('/output/message', [StreamOutputController::class, 'showMessage']);
     Route::post('/output/lowerthird', [StreamOutputController::class, 'showLowerThird']);
+    Route::post('/output/upperthird', [StreamOutputController::class, 'showUpperThird']);
     Route::post('/output/agenda', [StreamOutputController::class, 'showAgenda']);
     Route::post('/output/vote-countdown-show', [StreamOutputController::class, 'showVoteCountdown']);
     Route::post('/output/vote-countdown-hide', [StreamOutputController::class, 'hideVoteCountdown']);
+    Route::post('/output/countdown', [StreamOutputController::class, 'showCountdown']);
     Route::post('/output/hide', [StreamOutputController::class, 'hideAll']);
 });

@@ -234,5 +234,18 @@ return [
         'start_time' => env('EVENT_START_TIME'),
         'lower_thirds' => env('EVENT_LOWER_THIRDS'),
         'zoom_url' => env('EVENT_ZOOM_URL'),
-    ]
+    ],
+
+    'admin' => [
+        'menu' => [
+            [
+                'route' => 'admin.interactive',
+                'name' => 'Interactive',
+            ],
+            [
+                'route' => 'admin.graphics',
+                'name' => 'Graphics',
+            ]
+        ]
+    ],
 ];

@@ -13,4 +13,14 @@ class Question extends Model
     {
         return $this->belongsTo(Participant::class);
     }
+
+    public function getNameAttribute()
+    {
+        return is_null($this->participant) ? $this->custom_name : $this->participant->name;
+    }
+
+    public function toArray()
+    {
+        return array_merge(parent::toArray(), ['name' => $this->name]);
+    }
 }
