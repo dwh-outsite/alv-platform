@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <strong>Let op:</strong> je e-mailadres moet gelijk zijn aan het adres waarop je de ALV uitnodiging
-                    hebt ontvangen.
+                    hebt ontvangen en dat bekend is bij de ledenadministratie.
                 </div>
                 <div class="leading-snug">
                 </div>
