@@ -6,6 +6,7 @@ use App\Mail\Invite;
 use App\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -17,6 +18,7 @@ class RegisterController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:participants',
+                'attendance' => ['required', 'string', Rule::in(['online', 'physical'])],
             ]),
             ['code' => Participant::generateCode()]
         ));

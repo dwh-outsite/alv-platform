@@ -34,6 +34,24 @@
                     <div class="bg-red-200 p-3 mb-6 rounded">{{ $message }}</div>
                     @enderror
 
+
+                    <div class="mb-1">
+                        Ik woon de ALV bij op de volgende manier:
+                    </div>
+                    <div class="flex space-x-4 mb-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="attendance" value="online" class="mr-2 focus:ring-purple-500 h-5 w-5 text-purple-600 border-gray-300" required />
+                            Online (voorkeur)
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="attendance" value="physical" class="mr-2 focus:ring-purple-500 h-5 w-5 text-purple-600 border-gray-300" required />
+                            Fysiek
+                        </label>
+                    </div>
+                    @error('attendance')
+                    <div class="bg-red-200 p-3 mb-6 rounded">{{ $attendance }}</div>
+                    @enderror
+
                     <label class="bg-purple-100 rounded-lg p-4 flex">
                         <input type="checkbox" name="privacy_consent" value="true" class="mr-2 pt-2 w-6 h-6 rounded-lg" required/>
                         <div class="flex-1 text-sm">
