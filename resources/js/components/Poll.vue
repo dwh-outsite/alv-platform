@@ -4,7 +4,7 @@
             <span class="font-bold">{{ poll.question }}</span>
             <div
                 v-for="option in poll.options"
-                @click="selected = option.id"
+                @click="select(option)"
                 class="mt-4 bg-gray-800 rounded-md p-4 flex items-center leading-5"
                 :class="[
                     state == 'open' ? 'hover:bg-gray-700 cursor-pointer' : '',
@@ -30,7 +30,7 @@
                 </button>
             </div>
         </div>
-        <div v-else class="h-full flex items-center justify-center leading-7">
+        <div v-else class="h-full flex items-center justify-center leading-7 py-4">
             Er is op dit moment geen stemming bezig.<br />
             Een nieuwe vraag verschijnt automatisch.
         </div>
@@ -58,6 +58,12 @@
             })
         },
         methods: {
+            select(option) {
+                if (this.state == 'submitted') {
+                    return
+                }
+                this.selected = option.id
+            },
             vote() {
                 this.state = 'loading'
 

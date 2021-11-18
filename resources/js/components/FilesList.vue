@@ -1,5 +1,5 @@
 <template>
-    <div v-if="files.length > 0" class="h-full flex items-center">
+    <div v-if="files.length > 0" class="h-full md:flex items-center">
         <a
             v-for="file in files"
             :key="file.id"

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-full flex text-gray-200">
-        <div class="border-r-2 border-gray-400 w-1/4 flex flex-col justify-between">
+    <div class="md:h-full md:flex text-gray-200">
+        <div class="border-r-2 border-gray-400 md:w-1/4 flex flex-col justify-between">
             <div class="flex-1">
                 <div class="bg-gray-700 font-bold p-4 uppercase text-center tracking-wide">
                     Stemmingen
