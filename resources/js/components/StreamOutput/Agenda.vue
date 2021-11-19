@@ -43,13 +43,12 @@
                     'Vaststelling Agenda',
                     'Vaststelling Notulen',
                     'Mededelingen',
-                    'Jaarverslag 2020',
-                    'Jaarstukken 2020',
-                    'Kwijting',
-                    'Controlecommissie 2021',
-                    'Herbegroting 2021',
+                    'Jaarplan 2022',
+                    'Begroting 2022',
                     'Bestuurswisseling',
-                    'Rondvraag en Sluiting',
+                    'Contributie 2022',
+                    'Rondvraag',
+                    'Sluiting',
                 ]
             }
         }
