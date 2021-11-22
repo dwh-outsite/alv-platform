@@ -20,15 +20,21 @@
                 </div>
             </div>
             <div class="border-t-2 border-gray-400">
-                <div class="flex-1 p-4 flex items-center">
-                    <a href="{{ config('app.event.zoom_url') }}" target="_blank">
-                        <button class="bg-blue-800 hover:bg-blue-600 p-4 rounded leading-tight font-semibold text-sm">
-                            Discussieer mee <br /> via Zoom
-                        </button>
-                    </a>
-                    <div class="text-gray-500 leading-snug text-xs italic ml-2 xl:flex-1">
-                        Stop de stream op deze pagina om dubbel geluid te voorkomen.
-                        Met het joinen van de Zoom call ga je ermee akkoord dat je in beeld gebracht kunt worden.
+                <div class="flex-1 p-4">
+                    <div class="flex items-center">
+                        <a href="{{ config('app.event.zoom_url') }}" target="_blank">
+                            <button class="bg-blue-800 hover:bg-blue-600 p-4 rounded leading-tight font-semibold text-sm">
+                                Discussieer mee <br /> via Zoom
+                            </button>
+                        </a>
+                        <div class="text-gray-500 leading-snug text-xs italic ml-2 xl:flex-1">
+                            Stop de stream op deze pagina om dubbel geluid te voorkomen.
+                            Met het joinen van de Zoom call ga je ermee akkoord dat je in beeld gebracht kunt worden.
+                        </div>
+                    </div>
+                    <div class="pt-2 text-sm leading-snug">
+                        <strong>We raden aan de stream op deze pagina te kijken voor de hoogste kwaliteit.</strong>
+                        Wanneer van toepassing kun je overschakelen naar de Zoom call.
                     </div>
                 </div>
             </div>
